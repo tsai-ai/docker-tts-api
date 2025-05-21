@@ -4,7 +4,8 @@ const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
 
-const privateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
+const rawPrivateKey = process.env.PRIVATE_KEY;
+const privateKey = rawPrivateKey ? rawPrivateKey.replace(/\\n/g, '\n') : null;
 const clientEmail = process.env.CLIENT_EMAIL;
 
 app.post('/tts', async (req, res) => {
